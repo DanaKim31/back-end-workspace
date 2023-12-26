@@ -263,6 +263,19 @@ WHERE dept_code IN ('D6', 'D5', 'D8');
 SELECT *
 FROM employee
 WHERE job_code IN ('J7', 'J2') AND salary >= 2000000;
+/* 또는 WHERE (job_code = 'J7' OR job_code = 'j2' AND salary >= 2000000 */
+
+/*
+	연산자 우선순위
+    0. ()
+    1. 산술연산자 : *, /, DIV(/와 같이 쓰임), %, MOD(%와 같이 쓰임), +, -
+    2. 비교연산자 : =, <, <=, >, >=, <>, !=, ^= (마지막 세개는 '같지않다'로 같은 의미)
+    3. IS NULL / LIKE / IN
+    4. BETWEEN AND
+    5. NOT
+    6. AND
+    7. OR
+*/
 
 -- 2. 사수가 없고 부서배치도 받지 않은 사원들의 사원명, 사수사번(manager_id), 부서코드 조회
 SELECT emp_name, manager_id, dept_code
@@ -289,6 +302,63 @@ WHERE salary >= 2000000 AND hire_date >= '2000-01-01' AND bonus IS NULL;
 SELECT emp_id, emp_name, salary, bonus, (salary + salary * bonus) * 12 as "보너스 포함 연봉"
 FROM employee
 WHERE (salary + salary * bonus) * 12 IS NOT NULL AND emp_name LIKE '%하%';
+
+/*
+	ORDER BY
+    - SELECT문 가장 마지막 줄에 작성 뿐만 아니라 실행순서 또한 마지막에 실행
+    
+    3 SELECT 컬럼, 컬럼...
+    1 FROM 테이블명
+    2 WHERE 조건식
+    4 ORDER BY 정렬하고자 하는 컬럼값 [ASC|DESC];
+    
+    - ASC : 오름차순 정렬 (생략 시 기본값)
+    - DESC : 내림차순 정렬
+    
+*/
+-- 전체 사원의 사원명, 보너스 조회
+SELECT emp_name, bonus
+FROM employee
+-- ORDER BY bonus; -- 보너스 기준 오름차순 정렬 (null이 맨 앞)
+-- ORDER BY bonus DESC; -- 보너스 기준 내림차순 정렬 (null이 맨 뒤)
+ORDER BY 2 DESC; -- 컬럼명 자리에 컬럼명의 순서(2 = bonus)도 올 수 있음 (null이 맨 뒤)
+
+/*
+	LIMIT
+    - ORDER BY 절 보다 뒤에 조건을 걸고 싶을 때 사용
+    - 출력되는 행 수를 제한하는 MySQL 전용 비표준 구문
+    - 데이터 양을 제한하고자 할 때 유용
+*/
+-- 연봉이 높은 5명 사원의 사원명, 급여 조회
+SELECT emp_name, salary
+FROM employee
+ORDER BY salary DESC -- 가장 높은 순으로 내림차순 정렬
+LIMIT 5; -- ORDER BY로 정렬한 목록에서 상위 다섯명 까지만 출력
+
+-- 페이징 처리! (첫 페이지에 몇개의 데이터를 노출할 것인지..)
+-- LIMIT 절은 두 개의 값이 있을 수 있음!
+-- 첫 번째 값은 오프셋(offset, 0부터 시작) 시작 행을 지정,
+-- 두 번째 값은 반환할 최대 행 수를 지정
+
+SELECT emp_name, salary
+FROM employee
+ORDER BY salary DESC 
+LIMIT 5, 5; -- 데이터 순서(0부터 시작) 5번 부터 5개 출력 
+
+SELECT emp_name, salary
+FROM employee
+ORDER BY salary DESC 
+LIMIT 10 OFFSET 5; -- 최대 행 수는 10개, 데이터 순서 5번부터
+
+
+
+
+
+
+
+
+
+
 
 
 
