@@ -348,6 +348,120 @@ SELECT
 FROM employee
 ORDER BY 직급코드, 인상급여 DESC;
 
+/*
+	CASE WHEN 조건식 1 THEN 결과값 1
+		 WHEN 조건식 2 THEN 결과값 2
+         ...
+         ELSE 결과값 N
+	END
+    
+    -> if ~ else if 문과 유사 (조건식이 여러개 들어갈 수 있는 구조)
+*/
+-- 사번, 사원명, 주민번호, 성별(남자, 여자) 조회
+SELECT 
+	emp_id, emp_name, emp_no,
+    CASE WHEN substr(emp_no, -7, 1) = 1 THEN '남자'
+		 WHEN substr(emp_no, -7, 1) = 2 THEN '여자'
+         ELSE "잘못된 주민번호 입니다."
+	END "성별"
+FROM employee;
+
+-- 사원명, 급여, 급여 등급(1 ~ 4 등급) 조회
+-- salary 값이 500만원 초과일 경우 1등급
+-- salary 값이 500만원 이하 350만원 초과일 경우 2등급
+-- salary 값이 350만원 이하 200만원 초과일 경우 3등급
+-- 그 외의 경우 4등급
+SELECT 
+	emp_name "사원명", format(salary, 0) "급여",
+    CASE WHEN salary > 5000000 THEN '1등급'
+		 WHEN salary > 3500000 THEN '2등급'
+         WHEN salary > 2000000 THEN '3등급'
+         ELSE '4등급'
+	END "급여등급"
+FROM employee
+ORDER BY 급여 DESC;
+
+-- 그룹함수(집계함수) -----------------------------------------------------
+/*
+	그룹함수
+    - 대량의 데이터들로 집계나 통계 같은 작업을 처리해야 하는 경우 사용되는 함수들
+    - 모든 그룹함수는 NULL 값을 자동으로 제외하고 값이 있는 것들만 계산
+    
+    SUM(함수)
+    - 해당 컬럼 값들의 총 합계를 반환
+*/
+-- 전체 사원의 총 급여 합 조회
+SELECT format(sum(salary), 0) "급여합계"
+FROM employee;
+
+-- 부서코드가 D5인 사원들의 총 연봉(급여 * 12) 합 조회
+SELECT format(sum(salary * 12), 0) "D5 연봉합계"
+FROM employee
+WHERE dept_code = 'D5';
+
+/*
+	AVG(숫자)
+    - 해당 컬럼 값들의 평균값을 반환
+    - 모든 그룹 함수는 NULL 값을 자동으로 제외하기 때문에 
+	  AVG 함수를 사용할 때는 COALEASE 또는 IFNULL 함수와 함께 사용하는 것을 권장
+*/
+-- 전체 사원의 평균 급여 조회
+SELECT 
+	avg(salary), avg(ifnull(salary, 0)),
+	avg(bonus), avg(ifnull(bonus, 0))
+FROM employee;
+
+/*
+	MIN|MAX(모든 타입의 컬럼)
+    - MIN : 해당 컬럼 값들 중에 가장 작은 값을 반환 (문자열 최소값 : 오름차순 첫 번째)
+    - MAX : 해당 컬럼 값들 중에 가장 큰 값을 반환 (문자열 최대값 : 내림차순 첫 번째)
+*/
+-- 가장 작은 값에 해당하는 사원명, 급여, 입사일
+-- 가장 큰 값에 해당하는 사원명, 급여, 입사일
+SELECT min(emp_name), min(salary), min(hire_date),
+	   max(emp_name), max(salary), max(hire_date)
+FROM employee;
+
+/*
+	COUNT(*|컬럼|DISTINCT 컬럼)
+    - 컬럼 또는 행의 개수를 세서 반환
+    
+    COUNT(*) : 조회 결과에 해당하는 모든 행 개수를 반환
+    COUNT(컬럼) : 해당 컬럼값이 NULL이 아닌 행 개수를 반환
+    COUNT(DISTINCT 컬럼) : 해당 컬럼값의 중복을 제거한 행 개수를 반환
+*/
+-- 전체 사원 수 조회
+SELECT count(*)
+FROM employee;
+
+-- 보너스를 받은 사원 수 조회
+SELECT count(bonus)
+FROM employee;
+
+-- 부서가 배치된 사원 수 조회
+SELECT count(dept_code)
+FROM employee;
+
+-- 현재 사원들이 속해있는 부서 수 조회
+SELECT count(distinct dept_code)
+FROM employee;
+
+-- 현재 사원들이 분포되어 있는 직급 수
+SELECT count(distinct job_code)
+FROM employee;
+
+-- 퇴사한 직원의 수 조회 (퇴사한 날짜 - ent_date 또는 퇴사여부 - ent_yn이 y인 경우)
+SELECT count(ent_date)
+FROM employee;
+
+
+
+
+
+
+
+
+
 
 
 
