@@ -291,9 +291,10 @@ WHERE emp_no LIKE '7%' AND emp_name LIKE '전%';
 
 -- 3. 보너스를 받은 직원들의 직원명, 보너스, 연봉, 부서명, 근무지역 조회
 -- 단, 부서코드가 없는 사원도 출력 (OUTER JOIN 사용!)
-SELECT emp_name, bonus, format((salary * 12), 0), dept_title, local_name
+SELECT emp_name, bonus, format((salary * 12), 0) "연봉", dept_title, local_name
 FROM employee LEFT JOIN department ON (dept_code = dept_id)
-	LEFT JOIN location ON (location_id = local_code);
+	LEFT JOIN location ON (location_id = local_code)
+WHERE bonus IS NOT NULL;
 
 
 -- 4. 한국과 일본에서 근무하는 직원들의 직원명, 부서명, 근무지역, 근무 국가를 조회
