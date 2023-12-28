@@ -343,7 +343,7 @@ LIMIT 5; -- ORDER BY로 정렬한 목록에서 상위 다섯명 까지만 출력
 SELECT emp_name, salary
 FROM employee
 ORDER BY salary DESC 
-LIMIT 5, 5; -- 데이터 순서(0부터 시작) 5번 부터 5개 출력 
+LIMIT 5, 5; -- 데이터 순서(5부터 시작) 5번 부터 5개 출력 
 
 SELECT emp_name, salary
 FROM employee
