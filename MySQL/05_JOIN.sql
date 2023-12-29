@@ -321,9 +321,6 @@ FROM employee LEFT JOIN department ON (dept_code = dept_id)
 WHERE bonus IS NOT NULL;
 
 -- >> WHERE 구문
-SELECT emp_name, bonus, format((salary + salary * ifnull(bonus, 0)) * 12, 0) "연봉", dept_title, local_name
-FROM employee, department, location
-WHERE 
 
 
 -- ----------------------------------------------------------------------------
@@ -336,23 +333,39 @@ FROM employee
     JOIN national USING (national_code)
 WHERE national_name IN ('한국', '일본');
 
+-- >> WHERE 구문
+SELECT emp_name, dept_title, local_name, national_name
+FROM employee, department, location, national
+WHERE dept_code = dept_id
+	AND location_id = local_code
+    AND location.national_code = national.national_code
+    AND national_name IN ('한국', '일본');
 
 -- ----------------------------------------------------------------------------
 
 -- 5. 각 부서별 평균 급여를 조회하여 부서명, 평균급여를 조회. 단, 부서 코드가 없는 사원들의 평균도 같이 나오게끔! (OUTER JOIN 사용)
+-- >> ANSI 구문
 SELECT dept_title "부서명", format(avg(salary), 0) "평균급여"
 FROM employee LEFT JOIN department ON (dept_code = dept_id)
 GROUP BY dept_title;
 
+-- >> LEFT JOIN을 WHERE 구문은 사용 못 함!!
 
 -- ----------------------------------------------------------------------------
 
 -- 6. 각 부서별 총 급여의 합이 1000만원 이상인 부서명, 급여의 합을 조회
+-- >> ANSI 구문
 SELECT dept_title "부서명", format(sum(salary), 0) "급여의 합"
 FROM employee JOIN department ON (dept_code = dept_id)
 GROUP BY dept_title
-HAVING sum(salary) >= 10000000;
+HAVING sum(salary) >= 10000000;  -- 그룹함수(sum)와 관련된 조건이기 때문에 WHERE이 아닌 HAVING
 
+-- >> WHERE 구문
+SELECT dept_title "부서명", format(sum(salary), 0) "급여의 합"
+FROM employee, department
+WHERE dept_code = dept_id
+GROUP BY dept_title
+HAVING sum(salary) >= 10000000;
 
 -- ----------------------------------------------------------------------------
 
@@ -360,54 +373,87 @@ HAVING sum(salary) >= 10000000;
 -- 급여 등급이 S1, S2인 경우 '고급'
 -- 급여 등급이 S3, S4인 경우 '중급'
 -- 급여 등급이 S5, S6인 경우 '초급'
+-- >> ANSI 구문
 SELECT emp_id, emp_name, job_name, sal_level, 
-	CASE WHEN sal_level = 'S1' OR 'S2' THEN '고급'
-	WHEN sal_level = 'S3' OR 'S4' THEN '중급'
+	CASE WHEN sal_level IN ('S1', 'S2') THEN '고급'
+	WHEN sal_level IN ('S3', 'S4') THEN '중급'
     ELSE '초급'
 	END "구분"
 FROM employee 
 	JOIN job USING (job_code)
-	JOIN sal_grade ON (min_sal <= salary AND salary <= max_sal);
+	JOIN sal_grade ON (salary BETWEEN min_sal AND max_sal);
 
+-- >> WHERE 구문
+SELECT emp_id, emp_name, job_name, sal_level, 
+	if(sal_level = 'S1' OR sal_level = 'S2', '고급',
+		if(sal_level = 'S3' OR sal_level = 'S4', '중급', '초급')) "구분"
+FROM employee, job, sal_grade
+WHERE employee.job_code = job.job_code
+	AND salary BETWEEN min_sal AND max_sal;
 
 -- ----------------------------------------------------------------------------
 
 -- 8. 보너스를 받지 않는 직원들 중 직급 코드가 J4 또는 J7인 직원들의 직원명, 직급명, 급여를 조회
+-- >> ANSI 구문
 SELECT emp_name, job_name, format(salary, 0) "급여"
 FROM employee 
 	JOIN job USING (job_code)
 WHERE bonus IS NULL AND job_code IN ('J4', 'J7');
 
+-- >> WHERE 구문
+SELECT emp_name, job_name, format(salary, 0) "급여"
+FROM employee, job
+WHERE employee.job_code = job.job_code
+	AND bonus IS NULL AND job.job_code IN ('J4', 'J7');
 
 -- ----------------------------------------------------------------------------
 
 -- 9. 부서가 있는 직원들의 직원명, 직급명, 부서명, 근무지역을 조회
+-- >> ANSI 구문
 SELECT emp_name, job_name, dept_title, local_name
 FROM employee
 	JOIN job USING (job_code)
     JOIN department ON (dept_code = dept_id)
-    JOIN location ON (location_id = local_code)
-WHERE dept_code IS NOT NULL;
+    JOIN location ON (location_id = local_code);  -- JOIN 시 null 값은 걸러지기 때문에 WHERE 조건 생략 가능
 
+-- >> WHERE 구문
+SELECT emp_name, job_name, dept_title, local_name
+FROM employee e, job j, department, location
+WHERE e.job_code = j.job_code
+	AND dept_code = dept_id
+    AND location_id = local_code
+    AND dept_code IS NOT NULL;
 
 -- ----------------------------------------------------------------------------
 
 -- 10. 해외영업팀에 근무하는 직원들의 직원명, 직급명, 부서코드, 부서명을 조회
+-- >> ANSI 구문
 SELECT emp_name, job_name, dept_code, dept_title
 FROM employee
 	JOIN job USING (job_code)
     JOIN department ON (dept_code = dept_id)
 WHERE dept_title LIKE '해외영업%';
 
+-- >> WHERE 구문
+SELECT emp_name, job_name, dept_code, dept_title
+FROM employee e, job j, department
+WHERE e.job_code = j.job_code
+	AND dept_code = dept_id
+    AND dept_title LIKE '해외영업%';
 
 -- ----------------------------------------------------------------------------
 
 -- 11. 이름에 '형'자가 들어있는 직원들의 사번, 직원명, 직급명을 조회
+-- >> ANSI 구문
 SELECT emp_id, emp_name, job_name
 FROM employee
 	JOIN job USING (job_code)
 WHERE emp_name LIKE '%형%';
     
-
+-- >> WHERE 구문
+SELECT emp_id, emp_name, job_name
+FROM employee e, job j
+WHERE e.job_code = j.job_code
+	AND emp_name LIKE '%형%';
 
 

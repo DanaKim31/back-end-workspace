@@ -22,8 +22,8 @@
     CHAR_LENGTH(컬럼|'문자열') : 해당 문자열 값의 글자 수 반환
 */
 SELECT 
-	length('데이터베이스'), char_length('데이터베이스'),
-	length('database'), char_length('database');
+	length('데이터베이스'), char_length('데이터베이스'), -- 18 / 6
+	length('database'), char_length('database'); -- 8 / 8
 -- FROM DUAL; -- 가상 테이블 : 데이터베이스 자체에서 제공하는 테이블 (MySQL에서는 생략 가능!)
 
 -- 사원명, 사원명의 글자 수, 이메일, 이메일의 글자 수 조회
@@ -101,14 +101,14 @@ WHERE substr(emp_no, -7, 1) = 1;
 	LOWER
     UPPER
 */
-SELECT lower('Welcome To My World'),
-	   upper('Welcome To My World');
+SELECT lower('Welcome To My World'), -- welcome to my world
+	   upper('Welcome To My World'); -- WELCOME TO MY WORLD
        
 /*
 	REPLACE(컬럼|'문자열', '바꾸고 싶은 문자열', '바꿀 문자열')
     - 특정 문자열로 변경하여 반환
 */
-SELECT replace('서울특별시 강남구 역삼동', '역삼동', '삼성동');
+SELECT replace('서울특별시 강남구 역삼동', '역삼동', '삼성동'); -- 서울특별시 강남구 삼성동
 
 /*
 	CONCAT(컬럼|'문자열', 컬럼|'문자열', ....)
