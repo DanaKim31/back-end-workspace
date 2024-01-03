@@ -50,13 +50,13 @@ WHERE customer_id = (SELECT customer_id
 GROUP BY name;
 
 -- 5. 이메일이 JOYCE.EDWARDS@sakilacustomer.org인 고객이 가장 최근에 빌린 영화 제목과 영화 내용을 조회 
-SELECT title, description
-FROM customer
-	JOIN inventory USING (store_id)
-    JOIN film USING (film_id)
-	JOIN rental USING (customer_id)
-WHERE max(rental_date)
-GROUP BY title;
+-- SELECT title, description
+-- FROM customer
+-- 	JOIN inventory USING (store_id)
+--     JOIN film USING (film_id)
+-- 	JOIN rental USING (customer_id)
+-- WHERE max(rental_date)
+-- GROUP BY title;
 
 
 
