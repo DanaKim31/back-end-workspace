@@ -143,8 +143,8 @@ FROM employee;
     ABS(숫자)
     - 숫자의 절대값 반환
 */
-SELECT abs(-10);
-SELECT abs(-5.7);
+SELECT abs(-10); -- 10
+SELECT abs(-5.7); -- 5.7
 
 /*
 	숫자 DIV 숫자 = 숫자 / 숫자
