@@ -86,7 +86,7 @@ SELECT * FROM tb_member;
 --           rent_date(대여일) -- 기본값 현재날짜
 --    조건 : 이때 부모 데이터 삭제 시 NULL 값이 되도록 옵션 설정
 CREATE TABLE tb_rent (
-	RENT_NO INT PRIMARY KEY,
+	RENT_NO INT AUTO_INCREMENT PRIMARY KEY,
     RENT_MEM_NO INT,
     RENT_BOOK_NO INT,
     RENT_DATE DATE DEFAULT (current_date),
