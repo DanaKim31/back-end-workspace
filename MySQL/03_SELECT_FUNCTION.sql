@@ -190,16 +190,16 @@ SELECT truncate(123.456, -1); -- 120
     
     - 앞 표현(current 붙지 않은) : MySQL에서만 사용 됨
 */
-SELECT now(), current_timestamp(),
-	   curdate(), current_date(),
-	   curtime(), current_time();
+SELECT now(), current_timestamp(), -- 2024-01-05 11:45:29
+	   curdate(), current_date(), -- 2024-01-05
+	   curtime(), current_time(); -- 11:45:29
 
 /*
 	DAYOFYEAR(날짜) : 날짜가 해당 연도에서 몇 번째 날인지 반환
     DAYOFMONTH(날짜) : 날짜가 해당 월에서 몇 번째 날인지 반환
     DAYOFWEEK(날짜) : 날짜가 해당 주에서 몇 번째 날인지 반환 (일요일=1, 토요일=7)
 */
-SELECT dayofyear(now()), dayofmonth(now()), dayofweek(now());
+SELECT dayofyear(now()), dayofmonth(now()), dayofweek(now()); -- (1월 5일 기준) 5, 5, 6
 
 /*
 	PERIOD_DIFF(YYYYMM|YYMM, YYYYMM|YYMM) : 두 기간의 차이를 숫자로 반환
@@ -234,10 +234,10 @@ FROM employee;
     SUBTIME(날짜, 시간 정보)
     - 특정 날짜에 입력받은 정보만큼 뺀 날짜를 반환
 */
-SELECT now(), adddate(now(), interval 15 day);
-SELECT now(), subdate(now(), interval 15 day);
-SELECT now(), addtime(now(), "1 01:01:30");
-SELECT now(), subtime(now(), "1 01:01:30");
+SELECT now(), adddate(now(), interval 15 day); -- 2024-01-05 11:54:43, 2024-01-20 11:54:43
+SELECT now(), subdate(now(), interval 15 day); -- 2024-01-05 11:55:01, 2023-12-21 11:55:01
+SELECT now(), addtime(now(), "1 01:01:30"); -- 2024-01-05 11:55:17, 2024-01-06 12:56:47
+SELECT now(), subtime(now(), "1 01:01:30"); -- 2024-01-05 11:55:28, 2024-01-04 10:53:58
 
 -- 직원명, 입사일, 입사 후 6개월이 된 날짜를 조회
 SELECT emp_name, hire_date, adddate(hire_date, interval 6 month)
@@ -246,8 +246,8 @@ FROM employee;
 /*
 	LAST_DAY(날짜) : 해당 월의 마지막 날짜를 반환
 */
-SELECT last_day(now());
-SELECT last_day('2024-02-04');
+SELECT last_day(now()); -- 2024-01-31
+SELECT last_day('2024-02-04'); -- 2024-02-29
 
 /*
 	YEAR(날짜)
