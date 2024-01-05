@@ -3,8 +3,8 @@
 
 -- 1. 출판사들에 대한 데이터를 담기 위한 출판사 테이블(TB_PUBLISHER) 
 --    컬럼 : pub_no(출판사번호) -- 기본 키
---           pub_name(출판사명) -- NOT NULL
---           phone(전화번호)
+--          pub_name(출판사명) -- NOT NULL
+--          phone(전화번호)
 DROP TABLE tb_publisher;
 CREATE TABLE tb_publisher (
 	PUB_NO INT AUTO_INCREMENT PRIMARY KEY,
@@ -15,7 +15,7 @@ INSERT INTO tb_publisher(PUB_NAME, PHONE) VALUES('천그루숲', '010-8748-0784'
 INSERT INTO tb_publisher(PUB_NAME, PHONE) VALUES('골든래빗', '0505-398-0505');
 INSERT INTO tb_publisher(PUB_NAME, PHONE) VALUES('윌북', '031-955-3777');
 
-select * from tb_publisher;
+SELECT * FROM tb_publisher;
 
 
 
@@ -55,18 +55,17 @@ SELECT * FROM tb_book;
 --           phone(연락처)       
 --           status(탈퇴여부)     -- 기본값 'N' / 'Y' 혹은 'N'만 입력되도록 제약조건
 --           enroll_date(가입일)  -- 기본값 현재날짜
+DROP TABLE tb_member;
 CREATE TABLE tb_member(
 	MEMBER_NO INT AUTO_INCREMENT PRIMARY KEY,
     MEMBER_ID VARCHAR(10) UNIQUE,
     MEMBER_PWD VARCHAR(10) NOT NULL,
     MEMBER_NAME VARCHAR(3) NOT NULL,
-    GENDER CHAR (1),
+    GENDER CHAR (1) CHECK (GENDER IN ('M', 'F')),
     ADDRESS VARCHAR(10),
     PHONE VARCHAR(13),
-    STATUS CHAR(1) DEFAULT 'N',
-    ENROLL_DATE DATE DEFAULT (current_date),
-    CONSTRAINT GENDER_check CHECK (GENDER IN ('M', 'F')),
-    CONSTRAINT STATUS_check CHECK (STATUS IN ('Y', 'N'))
+    STATUS CHAR(1) CHECK (STATUS IN ('Y', 'N')) DEFAULT 'N',
+    ENROLL_DATE DATE DEFAULT (current_date)
 );
 INSERT INTO tb_member(MEMBER_ID, MEMBER_PWD, MEMBER_NAME, GENDER, ADDRESS, PHONE, STATUS, ENROLL_DATE) 
 			VALUES ('user01', 'pass01', '홍길동', 'M', '서울시 강서구', '010-1111-2222', default, default);
@@ -108,8 +107,6 @@ SELECT * FROM tb_rent;
 SELECT MEMBER_NAME "회원 이름", MEMBER_ID "아이디", RENT_DATE "대여일", ADDDATE(RENT_DATE, interval 7 day) "반납 예정일"
 FROM tb_member JOIN tb_rent ON (MEMBER_NO = RENT_MEM_NO)
 WHERE RENT_BOOK_NO = 2;
-
-select * from BK_NO2;
 
 
 
