@@ -260,6 +260,7 @@ SELECT last_day('2024-02-04'); -- 2024-02-29
 */
 SELECT year(now()), month(now()), day(now()),
 	   hour(now()), minute(now()), second(now());
+-- > 2024, 1, 5, 11, 59, 26
        
 -- 연도별 오래된 순으로 직원명, 입사년도, 입사월, 입사일 조회
 SELECT 
