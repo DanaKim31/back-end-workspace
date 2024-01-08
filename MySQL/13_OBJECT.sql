@@ -333,6 +333,46 @@ SELECT * FROM tb_product;
 SELECT * FROM tb_prodetail;
 
 
+/*
+	데이터베이스 모델링 (DB 모델링)
+    - 데이터베이스를 설계하는 프로세스
+    - 테이블 간의 관계 정의 및 구조 결정
+    
+    1. 개념적 모델링
+		- 엔티티(Entity) 추출 -> 각 테이블 하나하나, 객체 추출
+        - 엔티티 간의 관계 설정 (FOREIGN KEY)
+    2. 논리적 모델링 : ERD(Entity Relationshiop Diagram) 툴 사용, 강사님 추천 툴 : https://aquerytool.com/
+		- 정규화 작업 (1에서 5까지 있지만 3까지만 정규화 -> 너무 쪼개면 join만 많아짐)
+    3. 물리적 모델링
+		- 테이블 실직적으로 구성
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
