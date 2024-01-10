@@ -9,11 +9,11 @@ public class OperatorPractice {
 	public static void main(String[] args) {
 		OperatorPractice o = new OperatorPractice();
 //		o.method1();
-		o.method2();
+//		o.method2();
 //		o.method3();
 //		o.method4();
 //		o.method5();
-//		o.method6();
+		o.method6();
 	}
 
 	//모든 사람이 연필을 골고루 나눠가지려고 한다. 인원 수와 연필 개수를 키보드로 입력 받고 
@@ -94,7 +94,7 @@ public class OperatorPractice {
 		System.out.print("바구니 크기 > ");
 		int basket = sc.nextInt();
 		
-		String result = "필요한 바구니 수 : " + apple / basket + "개";
+		String result = "필요한 바구니 수 : " + (apple / basket + 1) + "개";
 		System.out.println(result);
 		
 	}
