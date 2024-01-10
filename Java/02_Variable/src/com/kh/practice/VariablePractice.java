@@ -13,6 +13,8 @@ public class VariablePractice {
 		v.method3();
 	}
 	
+	Scanner sc = new Scanner(System.in);
+	
 	public void method1() {
 		int adult = 2;
 		int teen = 3;
@@ -35,9 +37,11 @@ public class VariablePractice {
 		int y = 7;
 		int z = 9;
 		
+		int number = x;
+		
 		x = y;
 		y = z;
-		z = x;
+		z = number;
 		
 		System.out.println("x=" + x);
 		System.out.println("y=" + y);
@@ -45,7 +49,6 @@ public class VariablePractice {
 	}
 	
 	public void method3() {
-		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("문자열을 입력하세요 : ");
 		String input = sc.nextLine();

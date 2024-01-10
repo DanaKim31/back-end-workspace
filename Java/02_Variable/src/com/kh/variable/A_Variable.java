@@ -54,7 +54,7 @@ public class A_Variable {
 		 *   - '='는 오른쪽 값을 왼쪽 변수에 대입(저장)하는 연산자
 		 * */
 
-		// * 기본 자료형(Primitive type) : 실제 값을 저장
+		// * 기본 자료형(Primitive type) : 실제 값을 저장. 총 여덟개, 그 외에는 다 class
 		// stack 메모리에 생성된 공간에 실제 변수값이 저장
 		// 1. 논리형(Boolean : True/False) : 1byte(= 8bit / bit : 가장 작은 단위) 
 		boolean isTrue; // 변수 선언

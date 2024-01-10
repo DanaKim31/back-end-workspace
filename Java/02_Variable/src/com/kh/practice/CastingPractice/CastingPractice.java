@@ -8,9 +8,10 @@ public class CastingPractice {
 		CastingPractice c = new CastingPractice();
 		c.method1();
 	}
+	
+	Scanner sc = new Scanner(System.in);
 
 	public void method1() {
-		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("문자 : ");
 		String input = sc.nextLine();
