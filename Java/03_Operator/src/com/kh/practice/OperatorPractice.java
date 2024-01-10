@@ -94,7 +94,10 @@ public class OperatorPractice {
 		System.out.print("바구니 크기 > ");
 		int basket = sc.nextInt();
 		
-		String result = "필요한 바구니 수 : " + (apple / basket + 1) + "개";
+		int division = apple / basket;
+		int remainder = apple % basket;
+		
+		String result = "필요한 바구니 수 : " + (remainder != 0 ? (division + 1) + "개" : division + "개");
 		System.out.println(result);
 		
 	}

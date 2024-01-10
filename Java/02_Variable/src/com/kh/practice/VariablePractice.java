@@ -52,8 +52,9 @@ public class VariablePractice {
 		
 		System.out.print("문자열을 입력하세요 : ");
 		String input = sc.nextLine();
+		
 		char first = input.charAt(0);
-		char last = input.charAt(7);
+		char last = input.charAt(input.length() - 1);
 		
 		System.out.printf("첫 번째 문자 : " + first);
 		System.out.println();
