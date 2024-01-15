@@ -56,7 +56,7 @@ public class E_Logical {
 		// true || false = true
 		// false || false = false
 		
-		// || 연산자를 기준으로 ㅇ랖에서 이미 true 이기 때문에 굳이 뒤쪽의 연산은 수행하지 않는다
+		// || 연산자를 기준으로 앞에서 이미 true 이기 때문에 굳이 뒤쪽의 연산은 수행하지 않는다
 		result = (number < 20) || (++number > 0);
 		
 		

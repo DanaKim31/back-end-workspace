@@ -17,6 +17,7 @@ public class CastingPractice {
 		System.out.print("문자 : ");
 		String input = sc.nextLine();
 		char a = input.charAt(0);
+		
 		int first = a;
 		int second = first + 1;
 		char b = (char) second;

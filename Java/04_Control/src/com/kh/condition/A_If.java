@@ -99,6 +99,7 @@ public class A_If {
 		
 		// 삼항 연산자 풀이
 		String result = num > 0 ? "양수" : num < 0 ? "음수" : "0이다";
+		System.out.println(result);
 		
 		
 		// if-else 풀이, if문은 중첩 가능!

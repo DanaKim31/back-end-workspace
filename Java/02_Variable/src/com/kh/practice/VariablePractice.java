@@ -26,10 +26,14 @@ public class VariablePractice {
 		int tTotal = teen * tPrice;
 		int result = aTotal + tTotal;
 		
-		System.out.printf("성인 " + adult + "명 : " + aTotal + "원\n");
-		System.out.printf("청소년 " + teen + "명 : " + tTotal + "원\n");
-		System.out.println();
-		System.out.printf("총 금액 : " + result + "원");		
+		System.out.printf("성인 %d명 : %d원\n", adult, aTotal);
+		System.out.printf("청소년 %d명 : %d원\n/n", teen, tTotal);
+		System.out.printf("총 금액 : %d원", aTotal + tTotal);
+		
+//		System.out.printf("성인 " + adult + "명 : " + aTotal + "원\n");
+//		System.out.printf("청소년 " + teen + "명 : " + tTotal + "원\n");
+//		System.out.println();
+//		System.out.printf("총 금액 : " + result + "원");		
 	}
 
 	public void method2() {
