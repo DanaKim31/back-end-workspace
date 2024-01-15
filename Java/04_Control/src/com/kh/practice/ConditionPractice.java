@@ -322,7 +322,7 @@ public class ConditionPractice {
     	break;
     	case 4 : System.out.println(num4 + result);
     	break;
-    	case 9 : System.out.println("프로그램이 종료됩니다.");
+    	case 9 : System.out.println("프로그램이 " + num9 + "됩니다.");
     	default : 
     	}    	
     }

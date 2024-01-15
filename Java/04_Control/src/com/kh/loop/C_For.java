@@ -249,13 +249,13 @@ public class C_For {
 //		c.method5();
 //		c.method6();
 //		c.method7();
-//		c.method8();
+		c.method8();
 //		c.method9();
 //		c.method10();
 //		c.method11();
 //		c.method12();
 //		c.method13();
-		c.method14();
+//		c.method14();
 	}
 
 }
