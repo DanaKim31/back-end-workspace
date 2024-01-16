@@ -12,7 +12,7 @@ public class LoopPractice {
 //		l.method3();
 //		l.method4();
 //		l.method5();
-//		l.method6();
+		l.method6();
 	}
     /*
         1. 사용자로부터 숫자(1~100) 1개가 입력되었을 때 카운트다운 출력하시오.
