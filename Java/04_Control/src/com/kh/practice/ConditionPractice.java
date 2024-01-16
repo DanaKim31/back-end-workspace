@@ -16,8 +16,8 @@ public class ConditionPractice {
 //		c.practice6();
 //		c.practice7();
 //		c.practice8();
-		c.practice9();
-//		c.practice10();
+//		c.practice9();
+		c.practice10();
 //		c.practice11();
 
 	}
@@ -344,10 +344,10 @@ public class ConditionPractice {
             과제 점수 : 50
             출석 회수 : 15
             ===========결과==========
-            중간 고사 점수(20) : 16.0
-            기말 고사 점수(30) : 27.0
-            과제 점수 (30) : 15.0
-            출석 점수 (20) : 15.0
+            중간 고사 점수(20) : 16.0 -> 80 * 0.2
+            기말 고사 점수(30) : 27.0 -> 90 * 0.3
+            과제 점수 (30) : 15.0 	  -> 50 * 0.3
+            출석 점수 (20) : 15.0 	  -> 15 * 1
             총점 : 73.0
             PASS
 
@@ -375,7 +375,7 @@ public class ConditionPractice {
 
      */
     public void practice11() {
-    	
+    	System.out.println();
         
     }
     
