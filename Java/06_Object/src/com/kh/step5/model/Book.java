@@ -14,11 +14,11 @@ public class Book {
 	private double discountRate;
 	private String author;
 	
-	// alt shift s > Generate Constructor from Superclass
+	// 기본 생성자 생성 : alt shift s > Generate Constructor from Superclass
 	public Book() {}
 
 
-	// 생성자 생성 : alt shift s > Generate Constructor using Field
+	// 매개변수 있는 생성자 생성 : alt shift s > Generate Constructor using Field
 	public Book(String title, int price, double discountRate, String author) {
 		super();
 		this.title = title;

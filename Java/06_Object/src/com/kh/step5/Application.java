@@ -13,6 +13,8 @@ public class Application {
 		b.setDiscountRate(0.1);
 		
 		Book b2 = new Book("나는 메트로폴리탄 미술관의 경비원입니다", 17500, 0.1, "패트릭 브링리");
+//		System.out.println(b2);		
+		
 		
 		// getter를 이용하여 두 객체 각각 할인율을 적용한 책 가격을 계산해서 제목과 같이 출력
 		// 할인된 가격 = 가걱 - (가격 * 할인율)

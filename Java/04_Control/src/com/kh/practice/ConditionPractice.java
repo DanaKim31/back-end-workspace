@@ -16,8 +16,8 @@ public class ConditionPractice {
 //		c.practice6();
 //		c.practice7();
 //		c.practice8();
-//		c.practice9();
-		c.practice10();
+		c.practice9();
+//		c.practice10();
 //		c.practice11();
 
 	}
@@ -279,8 +279,26 @@ public class ConditionPractice {
     	System.out.println("연산자를 입력(+,-,*,/,%) : ");
     	String op = sc.nextLine();
     	
-    	if(num1 > 0 && num2 > 0 && op.equals("+")) {
-
+    	int plus = num1 + num2;
+    	int minus = num1 - num2;
+    	int time = num1 * num2;
+    	int divide = num1 / num2;
+    	int remainder = num1 % num2;
+    	
+    	if(num1 > 0 && num2 > 0) {
+    		if(op.equals("+")) {
+    			System.out.println(num1 + " + " + num2 + " = " + plus);
+    		} else if(op.equals("-")) {
+    			System.out.println(num1 + " - " + num2 + " = " + minus);
+    		} else if(op.equals("*")) {
+    			System.out.println(num1 + " * " + num2 + " = " + time);
+    		} else if(op.equals("/")) {
+    			System.out.println(num1 + " / " + num2 + " = " + divide);
+    		} else if(op.equals("%")) {
+    			System.out.println(num1 + " % " + num2 + " = " + remainder);
+    		} else {
+    			System.out.println("잘못 입력하셨습니다. 프로그램을 종료합니다.");
+    		}
     	}
     }
 
@@ -375,8 +393,45 @@ public class ConditionPractice {
 
      */
     public void practice11() {
-    	System.out.println();
+    	System.out.print("중간 고사 점수 : ");
+    	int test1 = sc.nextInt();
         
+    	System.out.print("기말 고사 점수 : ");
+    	int test2 = sc.nextInt();
+    	
+    	System.out.print("과제 점수 : ");
+    	int task = sc.nextInt();
+    	
+    	System.out.print("출석 회수 : ");
+    	int attn = sc.nextInt();
+    	
+    	double test1P = test1 * 0.2;
+    	double test2P = test2 * 0.3;
+    	double taskP = task * 0.3;
+    	double attnP = attn * 1;
+    	
+    	double sum = test1P + test2P + taskP + attnP;
+    	
+    	if(sum>=70 && attn>=14) {
+    		System.out.println("===========결과==========");
+    		System.out.println("중간 고사 점수 (20) : " + test1P + 
+    						   "\n기말 고사 점수 (30) : " + test2P +
+    						   "\n과제 점수 (30) : " + taskP + 
+    						   "\n출석 점수 (20) : " + attnP);
+    		System.out.println("총점 : " + sum);
+    		System.out.println("PASS");
+    	} else if(sum<70 && attn>=14) {
+    		System.out.println("===========결과==========");
+    		System.out.println("FAIL [점수 미달] " + "(총점 " + sum + ")");
+    	} else if(sum>70 && attn<14) {
+    		System.out.println("===========결과==========");
+    		System.out.println("FAIL [출석 횟수 부족] " + "(" + attn +"/20)");
+    	} else {
+    		System.out.println("===========결과==========");
+    		System.out.println("FAIL [점수 미달] " + "(총점 " + sum + ")");
+    		System.out.println("FAIL [출석 횟수 부족] " + "(" + attn +"/20)");
+    	}
+    	
     }
     
 }
