@@ -8,7 +8,7 @@ public class ConditionPractice {
     
 	public static void main(String[] args) {
 		ConditionPractice c = new ConditionPractice();
-//		c.practice1();
+		c.practice1();
 //		c.practice2();
 //		c.practice3();
 //		c.practice4();
@@ -16,7 +16,7 @@ public class ConditionPractice {
 //		c.practice6();
 //		c.practice7();
 //		c.practice8();
-		c.practice9();
+//		c.practice9();
 //		c.practice10();
 //		c.practice11();
 
@@ -33,13 +33,19 @@ public class ConditionPractice {
     	System.out.print("숫자를 한 개 입력하세요 : ");
     	int number = sc.nextInt();
     	
-    	if(number > 0 && number % 2 == 0) {
-    		System.out.println("짝수다");
-    	} else if(number > 0 && number % 2 == 1) {
-    		System.out.println("홀수다");
-    	} else {
-    		System.out.println("양수만 입력해주세요.");
-    	}
+//    	if(number > 0 && number % 2 == 0) {
+//    		System.out.println("짝수다");
+//    	} else if(number > 0 && number % 2 == 1) {
+//    		System.out.println("홀수다");
+//    	} else {
+//    		System.out.println("양수만 입력해주세요.");
+//    	}
+    	
+    	if(number > 0) {
+    		if(number % 2 == 0) {
+    			System.out.println("짝수다");
+    		} else System.out.println("홀수다");
+    	} else System.out.println("양수만 입력해주세요.");
     }
 
     /*
@@ -216,9 +222,7 @@ public class ConditionPractice {
     		System.out.println("아이디가 틀렸습니다.");
     	} else if(id.equals("happy")) {
     		System.out.println("비밀번호가 틀렸습니다.");
-    	} else {
-    		System.out.println("로그인 실패😢");
-    	}
+    	} else System.out.println("로그인 실패😢");
     }
 
     /*
@@ -270,13 +274,14 @@ public class ConditionPractice {
 
      */
     public void practice9() {
-    	System.out.println("숫자 입력 : ");
+    	System.out.print("숫자 입력 : ");
     	int num1 = sc.nextInt();
     	
-    	System.out.println("숫자 입력 : ");
+    	System.out.print("숫자 입력 : ");
     	int num2 = sc.nextInt();
+    	sc.nextLine();
     	
-    	System.out.println("연산자를 입력(+,-,*,/,%) : ");
+    	System.out.print("연산자를 입력(+,-,*,/,%) : ");
     	String op = sc.nextLine();
     	
     	int plus = num1 + num2;
@@ -299,7 +304,7 @@ public class ConditionPractice {
     		} else {
     			System.out.println("잘못 입력하셨습니다. 프로그램을 종료합니다.");
     		}
-    	}
+    	} else System.out.println("잘못 입력하셨습니다. 프로그램을 종료합니다.");
     }
 
     /*

@@ -10,9 +10,9 @@ public class LoopPractice {
 //		l.method1();
 //		l.method2();
 //		l.method3();
-//		l.method4();
+		l.method4();
 //		l.method5();
-		l.method6();
+//		l.method6();
 	}
     /*
         1. 사용자로부터 숫자(1~100) 1개가 입력되었을 때 카운트다운 출력하시오.
@@ -102,6 +102,7 @@ public class LoopPractice {
     		count++;
     		if(count == 10) break;
     	}
+    	
     	System.out.println("1 : ");
     	System.out.println("2 : ");
     	System.out.println("3 : ");
@@ -137,6 +138,27 @@ public class LoopPractice {
     	String name = sc.nextLine();
     	System.out.print("가위바위보 : ");
     	String input = sc.nextLine();
+    	
+    	double random = Math.random();
+    	
+//    	String rock = 1;
+//    	String paper = 2;
+//    	String csissors = 3;
+    	
+    	/*
+    	double random = Math.random(); // 0.0 <= random < 1.0
+		random = Math.random() * 10;   // 0.0 <= random < 10.0
+		random = Math.random() * 10 + 1;   // 1.0 <= random < 11.0
+		
+		int num = (int) random; // 1 ~ 10까지의 랜덤값
+		int sum = 0;
+		
+		for(int i=1; i<=num; i++) {
+			sum += i;
+		}
+		
+		System.out.println(sum);
+    	*/
     	
     	
     }
