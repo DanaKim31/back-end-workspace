@@ -47,7 +47,20 @@ public class Notebook extends Product {
 		super.setBrand(brand);
 		this.setpCode(pCode); // this : 부모 변수 호출 가능
 		setName(name); // super 또는 this 생략해서도 호출 가능
-		
+	}
+
+	public String getCpu() {
+		return cpu;
+	}
+
+	public void setCpu(String cpu) {
+		this.cpu = cpu;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + ", Notebook [cpu=" + cpu + "]";
+		// super.toString() : 부모의 toString 호출
 	}
 	
 	
