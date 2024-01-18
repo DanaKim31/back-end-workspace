@@ -8,9 +8,9 @@ public class LoopPractice {
 	public static void main(String[] args) {
 		LoopPractice l = new LoopPractice();
 //		l.method1();
-//		l.method2();
+		l.method2();
 //		l.method3();
-		l.method4();
+//		l.method4();
 //		l.method5();
 //		l.method6();
 	}
@@ -27,14 +27,28 @@ public class LoopPractice {
     	System.out.print("숫자(1 ~ 100) 입력 > ");
     	int num = sc.nextInt();
     	
-//    	for(i=num; i>=1; i--) {
-//    		
-//    	}
+    	for(int i=num; i>0; i--) {
+    		System.out.println(i);
+    	}
     }
 
     // 2. 1+(-2)+3+(-4)+...과 같은 식으로 계속 더해나갔을 때, 몇까지 더해야 총합이 100 이상 되는지 출력하시오.
     public void method2() {
-    	
+    	int sum = 0;
+    	int num = 1;
+
+    	while(true){
+    		if(num%2 != 0){
+    	    	sum += num;
+    	    }else{
+    	    	sum += num*-1;
+    	    }
+    	    if(sum>=100){
+    	    	System.out.println("num : "+num);
+    	        break;
+    	    }
+    	    num++;
+    	}
     }
 
     /*
@@ -49,15 +63,18 @@ public class LoopPractice {
     	System.out.print("문자열 : ");
     	String str = sc.nextLine();
     	
-//    	System.out.println("문자 : " + a);
-//    	System.out.println(str + " 안에 포함된 " + a + " 개수 : " + b);
+    	System.out.print("문자 : ");
+    	char ch = sc.next().charAt(0);
     	
+    	int count = 0;
     	
-    	for(char ch : str.toCharArray()) {
-			System.out.println(ch);
-		}
-    	
-    	
+    	for(int i=0; i<str.length(); i++) {
+    		if(str.charAt(i) == ch) {
+    			count++;
+    		}
+    	}
+    	System.out.println(" 안에 포함된 " + ch + " 개수 : " + count);
+//    	for(char ch : str.toCharArray()) {System.out.println(ch);}
     }
 
     /*
@@ -96,19 +113,27 @@ public class LoopPractice {
     	
     	int count = 0;
     	
+    	int count1 = 0;
+    	int count2 = 0;
+    	int count3 = 0;
+    	int count4 = 0;
+    	int count5 = 0;
+    	int count6 = 0;
+    	
     	while(true) {
     		int random = (int)(Math.random() * 6 + 1);
     		System.out.println(random);
     		count++;
     		if(count == 10) break;
+//    		System.out.println("1 : " + count1);
     	}
     	
-    	System.out.println("1 : ");
-    	System.out.println("2 : ");
-    	System.out.println("3 : ");
-    	System.out.println("4 : ");
-    	System.out.println("5 : ");
-    	System.out.println("6 : ");
+    	System.out.println("1 : " + count1);
+    	System.out.println("2 : " + count2);
+    	System.out.println("3 : " + count3);
+    	System.out.println("4 : " + count4);
+    	System.out.println("5 : " + count5);
+    	System.out.println("6 : " + count6);
     }
 
     /*
