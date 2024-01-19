@@ -1,7 +1,5 @@
 package com.kh.array.practice2.controller;
 
-import java.util.Arrays;
-
 import com.kh.array.practice2.model.Member;
 
 public class MemberController {
