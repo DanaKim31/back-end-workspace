@@ -40,7 +40,7 @@ public class Point {
 	// toString
 	@Override
 	public String toString() {
-		return "Point [x=" + x + ", y=" + y + "]";
+		return "위치 : " + "(" + x + ", " + y + "), ";
 	}
 	
 	

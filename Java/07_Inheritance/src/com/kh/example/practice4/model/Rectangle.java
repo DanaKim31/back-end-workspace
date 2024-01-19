@@ -39,7 +39,7 @@ public class Rectangle extends Point {
 	@Override
 	public String toString() {
 //		return super.toString() + " / Rectangle [width=" + width + ", height=" + height + "]";
-		return "위치 : " + "(" + super.getX() + ", " + super.getY() + "), 너비 : " + width + ", 높이 : " + height + " / "; 
+		return super.toString() + "너비 : " + width + ", 높이 : " + height + " / "; 
 	}
 		
 	

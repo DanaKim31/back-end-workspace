@@ -23,7 +23,7 @@ public class Circle extends Point{
 	@Override
 	public String toString() {
 //		return super.toString() + " / Circle [radius=" + radius + "]";
-		return "위치 : " + "(" + super.getX() + ", " + super.getY() + "), 반지름 : " + radius + " / ";
+		return super.toString() + "반지름 : " + radius + " / ";
 	}
 
 	
