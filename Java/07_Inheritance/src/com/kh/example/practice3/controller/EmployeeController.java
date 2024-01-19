@@ -8,7 +8,7 @@ public class EmployeeController {
 	
 	// 오버로딩!
 	
-	// 접근제어자 : public /  : void
+	// 접근제어자 : public /  반환타입 : void
 	public void add(int empNo, String name, char gender, String phone) {
 		employee.setEmpNo(empNo);
 		employee.setName(name);
