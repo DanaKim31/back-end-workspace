@@ -8,12 +8,14 @@ public class LoopPractice {
 	public static void main(String[] args) {
 		LoopPractice l = new LoopPractice();
 //		l.method1();
-		l.method2();
+//		l.method2();
 //		l.method3();
 //		l.method4();
 //		l.method5();
-//		l.method6();
+		l.method6();
 	}
+	
+	
     /*
         1. 사용자로부터 숫자(1~100) 1개가 입력되었을 때 카운트다운 출력하시오.
         사용자 입력 : 5
@@ -36,18 +38,17 @@ public class LoopPractice {
     public void method2() {
     	int sum = 0;
     	int num = 1;
-
-    	while(true){
-    		if(num%2 != 0){
-    	    	sum += num;
-    	    }else{
-    	    	sum += num*-1;
-    	    }
-    	    if(sum>=100){
-    	    	System.out.println("num : "+num);
-    	        break;
-    	    }
-    	    num++;
+    	
+    	while(true) {
+    		if(num % 2 != 0) {
+    			sum += num;
+    		} else sum += num*-1;
+    		
+    		if(sum>=100) {
+        		System.out.println("num : " + num);
+        		break;
+        	} 
+    		num++;
     	}
     }
 
@@ -70,11 +71,10 @@ public class LoopPractice {
     	
     	for(int i=0; i<str.length(); i++) {
     		if(str.charAt(i) == ch) {
-    			count++;
+    		count++;
     		}
     	}
-    	System.out.println(" 안에 포함된 " + ch + " 개수 : " + count);
-//    	for(char ch : str.toCharArray()) {System.out.println(ch);}
+    	System.out.println(str + " 안에 포함된 " + ch + " 개수 : " + count);
     }
 
     /*
@@ -110,30 +110,38 @@ public class LoopPractice {
      */
     public void method5() {
 //    	double random = Math.random(); // 0.0 <= random < 1.0
-    	
     	int count = 0;
     	
-    	int count1 = 0;
-    	int count2 = 0;
-    	int count3 = 0;
-    	int count4 = 0;
-    	int count5 = 0;
-    	int count6 = 0;
+    	int a = 0;
+    	int b = 0;
+    	int c = 0;
+    	int d = 0;
+    	int e = 0;
+    	int f = 0;
     	
     	while(true) {
-    		int random = (int)(Math.random() * 6 + 1);
-    		System.out.println(random);
+    		int random = (int) (Math.random() * 6 + 1);
+//    		System.out.println(random);
     		count++;
     		if(count == 10) break;
-//    		System.out.println("1 : " + count1);
+    		
+    		switch(random) {
+    		case 1 : a++; break;
+    		case 2 : b++; break;
+    		case 3 : c++; break;
+    		case 4 : d++; break;
+    		case 5 : e++; break;
+    		case 6 : f++; break;
+    		
+    		}
     	}
     	
-    	System.out.println("1 : " + count1);
-    	System.out.println("2 : " + count2);
-    	System.out.println("3 : " + count3);
-    	System.out.println("4 : " + count4);
-    	System.out.println("5 : " + count5);
-    	System.out.println("6 : " + count6);
+    	System.out.println("1 : " + a);
+    	System.out.println("2 : " + b);
+    	System.out.println("3 : " + c);
+    	System.out.println("4 : " + d);
+    	System.out.println("5 : " + e);
+    	System.out.println("6 : " + f);
     }
 
     /*
@@ -164,26 +172,27 @@ public class LoopPractice {
     	System.out.print("가위바위보 : ");
     	String input = sc.nextLine();
     	
-    	double random = Math.random();
-    	
-//    	String rock = 1;
-//    	String paper = 2;
-//    	String csissors = 3;
-    	
-    	/*
-    	double random = Math.random(); // 0.0 <= random < 1.0
-		random = Math.random() * 10;   // 0.0 <= random < 10.0
-		random = Math.random() * 10 + 1;   // 1.0 <= random < 11.0
-		
-		int num = (int) random; // 1 ~ 10까지의 랜덤값
-		int sum = 0;
-		
-		for(int i=1; i<=num; i++) {
-			sum += i;
+    	String computer = null;
+    	int random = (int) (Math.random() * 3);
+		switch(random) {
+		case 0 : System.out.println("가위"); break;
+		case 1 : System.out.println("바위"); break;
+		case 2 : System.out.println("보"); break;
 		}
 		
-		System.out.println(sum);
-    	*/
+		int user;
+		switch(input) {
+		case "가위" : user = 0; break;
+		case "바위" : user = 1; break;
+		case "보" : user = 2; break;
+		}
+		
+		// 가위(0), 바위(1), 보(2)
+		컴퓨터 = 0
+		사용자 = 0 (0)  => 비겼습니다.
+			   1 (-1) => 이겼습니다.
+			   2 (-2) => 졌습니다.
+    	
     	
     	
     }
