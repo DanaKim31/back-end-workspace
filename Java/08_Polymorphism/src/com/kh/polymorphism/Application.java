@@ -1,5 +1,9 @@
 package com.kh.polymorphism;
 
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+import com.kh.polymorphism.controller.EmployeeController;
 import com.kh.polymorphism.model.child.Engineer;
 import com.kh.polymorphism.model.child.Manager;
 import com.kh.polymorphism.model.child.Secretary;
@@ -41,8 +45,32 @@ public class Application {
 		
 		
 		// 다형성 + 객체 배열
+		Employee[] empArr = {e1, eg2, m2, s2};
+		
+		System.out.println("\n----------------------------------------\n");
+		
+		EmployeeController ec = new EmployeeController();
+		Scanner sc = new Scanner(System.in);
+		DecimalFormat df = new DecimalFormat("###,###,###");
+		
+		// 이름으로 사람 찾기
+		System.out.print("이름 입력 : ");
+		String name = sc.nextLine();
+		Employee result = ec.findEmployeeByName(name, empArr);
+		if(result != null) {
+			System.out.println(result);
+		} else {
+			System.out.println("찾는 사람이 없습니다.");
+		}
 		
 		
+		// 찾은 사람의 연봉은? 
+		System.out.println(result.getName() + "의 연봉 : " + df.format(ec.getAnnualSalary(result)) + "원");
+		
+		
+		
+		// 전체 사람들의 연봉 총 합은?
+		System.out.println("전체 사람들의 연봉 총 합 : " + df.format(ec.getTotalSalary(empArr)) + "원");		
 		
 	}
 
