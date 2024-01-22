@@ -172,27 +172,68 @@ public class LoopPractice {
     	System.out.print("가위바위보 : ");
     	String input = sc.nextLine();
     	
-    	String computer = null;
+//    	String computer = null;
     	int random = (int) (Math.random() * 3);
 		switch(random) {
-		case 0 : System.out.println("가위"); break;
-		case 1 : System.out.println("바위"); break;
-		case 2 : System.out.println("보"); break;
+			case 0 : System.out.println("컴퓨터 : 가위"); break;
+			case 1 : System.out.println("컴퓨터 : 바위"); break;
+			case 2 : System.out.println("컴퓨터 : 보"); break;
 		}
 		
-		int user;
+		String result = name + " : " + input + "\n"; 
+		
+		if(input.equals("가위")) {
+			if(random == 0) System.out.println(result + "비겼습니다.");
+			else if(random == 1) System.out.println(result + "졌습니다 ㅠㅠ");
+			else System.out.println(result + "이겼습니다 !");
+		} else if(input.equals("바위")) {
+			if(random == 0) System.out.println(result + "이겼습니다 !");
+			else if(random == 1) System.out.println(result + "비겼습니다.");
+			else System.out.println(result + "졌습니다 ㅠㅠ");
+		} else if(input.equals("보")) {
+			if(random == 0) System.out.println(result + "졌습니다 ㅠㅠ");
+			else if(random == 1) System.out.println(result + "이겼습니다 !");
+			else System.out.println(result + "비겼습니다.");
+		} else System.out.println("잘못 입력했습니다.");
+		
+		
+		
+		/*
+		int user = 0;
+		
 		switch(input) {
-		case "가위" : user = 0; break;
-		case "바위" : user = 1; break;
-		case "보" : user = 2; break;
+			case "가위" : user = 0; 
+						 System.out.println(name + " : 가위"); 
+			break;
+			case "바위" : user = 1; 
+						 System.out.println(name + " : 바위");
+			break;
+			case "보" : user = 2; 
+					    System.out.println(name + " : 보");
+			break;
 		}
+		*/
+			
+
 		
-		// 가위(0), 바위(1), 보(2)
+		/* 가위(0), 바위(1), 보(2)
 		컴퓨터 = 0
 		사용자 = 0 (0)  => 비겼습니다.
 			   1 (-1) => 이겼습니다.
 			   2 (-2) => 졌습니다.
-    	
+		---------------------------
+		컴퓨터 = 1
+		사용자 = 0 (1)  => 졌습니다.
+			   1 (0)  => 비겼습니다.
+			   2 (-1) => 이겼습니다.
+		---------------------------
+		컴퓨터 = 2
+		사용자 = 0 (-2) => 이겼습니다.
+			   1 (1)  => 졌습니다.
+			   2 (0)  => 비겼습니다.
+		
+		컴퓨터 - 사용자 = 0 비겼습니다.
+		*/
     	
     	
     }
