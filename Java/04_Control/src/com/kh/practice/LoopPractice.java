@@ -11,8 +11,8 @@ public class LoopPractice {
 //		l.method2();
 //		l.method3();
 //		l.method4();
-//		l.method5();
-		l.method6();
+		l.method5();
+//		l.method6();
 	}
 	
 	
@@ -34,11 +34,31 @@ public class LoopPractice {
     	}
     }
 
+    
+    
+    
     // 2. 1+(-2)+3+(-4)+...과 같은 식으로 계속 더해나갔을 때, 몇까지 더해야 총합이 100 이상 되는지 출력하시오.
     public void method2() {
     	int sum = 0;
     	int num = 1;
     	
+    	while(sum < 100) {
+    		if(num % 2 == 0) {
+    			sum += -num; // sum -= num;과 같음
+    		} else {
+    			sum += num;
+    		}
+    		
+    		if(sum >= 100) {
+    			break;
+    		}
+    		
+    		num++;
+    	}
+    	
+    	System.out.println("총 합이 100 이상이 되려면 [" + num + "] 까지 더해야 한다");
+    	
+    	/*
     	while(true) {
     		if(num % 2 != 0) {
     			sum += num;
@@ -49,9 +69,12 @@ public class LoopPractice {
         		break;
         	} 
     		num++;
-    	}
+    	}*/
     }
 
+    
+    
+    
     /*
         3. 사용자로부터 문자열을 입력 받고 문자열에서 검색될 문자를 입력 받아 해당 문자열에 그 문자가 몇 개 있는지 개수를 출력하세요. 
 
@@ -65,18 +88,29 @@ public class LoopPractice {
     	String str = sc.nextLine();
     	
     	System.out.print("문자 : ");
-    	char ch = sc.next().charAt(0);
+    	char ch = sc.nextLine().charAt(0);
     	
     	int count = 0;
     	
-    	for(int i=0; i<str.length(); i++) {
-    		if(str.charAt(i) == ch) {
-    		count++;
-    		}
+    	// for문 풀이
+//    	for(int i=0; i<str.length(); i++) {
+//    		if(str.charAt(i) == ch) {
+//    		count++;
+//    		}
+//    	}
+    	
+    	// 향상된 for문 풀이
+    	//	 - str.toCharArray() : 문자열을 문자배열로 변경!
+    	for(char s : str.toCharArray()) {
+    		if(s == ch) count++;
     	}
+    	
     	System.out.println(str + " 안에 포함된 " + ch + " 개수 : " + count);
     }
 
+    
+    
+    
     /*
         4. 0이 나올 때까지 숫자를 출력하시오. (random 사용! 0 ~ 10)
         7
@@ -89,6 +123,7 @@ public class LoopPractice {
      */
     public void method4() {
 //    	double random = Math.random(); // 0.0 <= random < 1.0
+    	// 사칙연산보다 형변환이 우선순위 더 높음
     	while(true) {
     		int random = (int)(Math.random() * 10);
     		System.out.println(random);
@@ -97,6 +132,9 @@ public class LoopPractice {
 
     }
 
+    
+    
+    
     /*
         5. 주사위를 10번 굴렸을 때 각 눈의 수가 몇 번 나왔는지 출력하세요. (random 사용!)
 
@@ -110,6 +148,49 @@ public class LoopPractice {
      */
     public void method5() {
 //    	double random = Math.random(); // 0.0 <= random < 1.0
+    	
+    	// 배열 풀이
+    	int[] dice = new int[6];
+    	
+    	for(int i=0; i<10; i++) {
+    		int random = (int) (Math.random() * 6); // 주사위 1 = 0 ... 6 = 5
+    		dice[random]++;
+    	}
+    	
+    	for(int i=0; i<dice.length; i++) {
+    		System.out.println((i+1) + " : " + dice[i]);
+    	}
+    	
+    	
+    	
+    	/*
+    	for(int i=0; i<10; i++) {
+    		int random = (int) (Math.random() * 6 + 1);
+    		
+    		switch(random) {
+    		case 1: dice[0]++;
+    			break;
+    		case 2: dice[1]++;
+    			break;
+    		case 3: dice[2]++;
+    			break;
+    		case 4: dice[3]++;
+    			break;
+    		case 5: dice[4]++;
+    			break;
+    		case 6: dice[5]++;
+    			break;
+    		}
+    	}
+    	
+    	for(int i=0; i<dice.length; i++) {
+    		System.out.println((i+1) + " : " + dice[i]);
+    	}*/
+    	
+    	
+// ----------------------------------------------------------------
+    	
+    	/* 변수 풀이
     	int count = 0;
     	
     	int a = 0;
@@ -142,8 +223,13 @@ public class LoopPractice {
     	System.out.println("4 : " + d);
     	System.out.println("5 : " + e);
     	System.out.println("6 : " + f);
+    	*/
+    	
     }
 
+    
+    
+    
     /*
         6. 사용자의 이름을 입력하고 컴퓨터와 가위바위보를 하세요. 
         컴퓨터가 가위인지 보인지 주먹인지는 랜덤한 수를 통해서 결정하도록 하고, 사용자에게는 직접 가위바위보를 받으세요.
@@ -198,42 +284,40 @@ public class LoopPractice {
 		
 		
 		
-		/*
-		int user = 0;
+		/* 강사님 풀이
+		String rps = new String{"가위", "바위", "보"};
 		
-		switch(input) {
-			case "가위" : user = 0; 
-						 System.out.println(name + " : 가위"); 
-			break;
-			case "바위" : user = 1; 
-						 System.out.println(name + " : 바위");
-			break;
-			case "보" : user = 2; 
-					    System.out.println(name + " : 보");
-			break;
+		System.out.print("당신의 이름을 입력해주세요 : ");
+    	String name = sc.nextLine();
+    	
+		switch(true) {
+			System.out.print("가위바위보 : ");
+    		String input = sc.nextLine();
+    		
+    		//  0 - 가위, 1 - 바위, 2 - 보
+    		int computer = (int) (Math.random() * 3);
+    		System.out.print("컴퓨터 : " + computer);
+    		
+    		int number = Arrays.asList(rps).indexOf(input);
+    		// 배열에서 값으로 인덱스 찾기 -> 사용자가 입력한 값을 숫자로!
+    		System.out.print(name + " : " + number);
+    		
+    		if(computer == number) {
+    			// 비겼을 경우
+    			System.out.print("비겼습니다.");
+    		} else if((number == 0 && computer == 2) || (number == 1 && computer == 0) || (number == 2 && computer == 1)) {
+    			// 이겼을 경우
+    			System.out.print("이겼습니다 !");
+    			break;
+    		} else {
+    			// 졌을 경우
+    			System.out.print("졌습니다 ㅠㅠ");
+    		}
+    		
+  
 		}
 		*/
 			
-
-		
-		/* 가위(0), 바위(1), 보(2)
-		컴퓨터 = 0
-		사용자 = 0 (0)  => 비겼습니다.
-			   1 (-1) => 이겼습니다.
-			   2 (-2) => 졌습니다.
-		---------------------------
-		컴퓨터 = 1
-		사용자 = 0 (1)  => 졌습니다.
-			   1 (0)  => 비겼습니다.
-			   2 (-1) => 이겼습니다.
-		---------------------------
-		컴퓨터 = 2
-		사용자 = 0 (-2) => 이겼습니다.
-			   1 (1)  => 졌습니다.
-			   2 (0)  => 비겼습니다.
-		
-		컴퓨터 - 사용자 = 0 비겼습니다.
-		*/
     	
     	
     }
