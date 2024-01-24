@@ -86,7 +86,8 @@ public class A_Variable {
 		// 실제 데이터 값은 heap 메모리에 저장, stack 메모리의 변수 공간에는 실제 변수값이 저장된 heap 메모리의 위치값을 저장
 		String name = "이상현"; // String : 여러 글자를 담을 수 있음
 		String name2 = new String("이상현");
-		System.out.println(name2);
+		System.out.println(name); // 이상현
+		System.out.println(name2); // 이상현
 		
 		// 변수 네이밍 규칙
 		// 1. 대소문자 구분
@@ -110,6 +111,7 @@ public class A_Variable {
 //		int public;
 //		int void;
 //		int int;
+		int int1;
 		int class2;
 		
 		// 5. [권장사항] 낙타표기법(카멜케이스)

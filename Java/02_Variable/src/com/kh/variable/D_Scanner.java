@@ -8,7 +8,7 @@ public class D_Scanner {
 	 * Scanner (Java에서 대문자로 시작하는 것 : 클래스)
 	 * - 화면(Console)으로부터 데이터를 "입력"받는 클래스
 	 * 
-	 * 1. import java.util.Scanne; 추가
+	 * 1. import java.util.Scanner; 추가
 	 * 
 	 * 2. Scanner 객체 생성
 	 * 	  Scanner sc = new Scanner(System.in);
