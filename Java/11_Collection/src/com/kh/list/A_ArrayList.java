@@ -2,6 +2,7 @@
 package com.kh.list;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.kh.list.model.Person;
@@ -25,6 +26,10 @@ import com.kh.list.model.Person;
  *   	- implements로 상속받기 때문에 class가 아닌 interface 
  *   	  (참고 : https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ArrayList.html)
  *   
+ *    * List의 특징
+ *    	- 중복 허용
+ *     	- 순서 있음
+ *   
  *    * ArrayList
  *    	- 저장 용량(capacity)을 초과한 객체들이 들어오면 자동적으로 저장 용량이 늘어난다.
  *      	- 배열에서 배열크기를 지정하고 시작하는 것 처럼, 저장용량을 지정하고 시작하는데 용량을 초과하더라도 자동 용량 추가 가능
@@ -33,7 +38,8 @@ import com.kh.list.model.Person;
  *      - 동기화 : 하나의 자원(데이터)에 대해 여러 개의 스레드가 접근하려 할 때 한 시점에서 하나의 스레드만 사용할 수 있도록 하는 것을 말한다.
  *      		 즉, 동기화를 제공하지 않는 것은 한 데이터에 대해 한 시점에서 하나의
  *
- *   2. Set      
+ *   2. Set  >>  set 패키지 참고
+ *   3. Map  >>  map 패키지 참고   
  * */
 
 public class A_ArrayList {
@@ -41,7 +47,8 @@ public class A_ArrayList {
 	public static void main(String[] args) {
 		A_ArrayList a = new A_ArrayList();
 //		a.method1();
-		a.method2();
+//		a.method2();
+		a.method3();
 	}
 	
 	public void method1() {
@@ -117,9 +124,102 @@ public class A_ArrayList {
 		// 9. isEmpty : 컬렉션이 비어있는지
 		//				반환타입 boolean이므로, System.out.println으로 출력
 		System.out.println("\n리스트가 비어있는가? " + list.isEmpty()); // false
+	
+
+		System.out.println("\n---------- 실습문제 ----------\n");
 		
+		// 1. 리스트에 저장된 사람들의 평균 연령을 출력
+		int ageSum = 0;
+				
+		/* for문 풀이
+		for(int i=0; i<list.size(); i++) {
+			ageSum += list.get(i).getAge();
+		}
+		*/ 
+		
+		// 향상된 for문 풀이
+		for(Person p : list) {
+			ageSum += p.getAge();
+		}
+		System.out.println("1. 평균 연령 : " + ageSum/list.size());
+		
+		
+		
+		// 2. 저장된 사람들의 이름만 출력
+		System.out.println("\n2. 이름만 출력 : ");
+		
+		/* for문 풀이
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i).getName());
+		}
+		*/
+		
+		// 향상된 for문 풀이
+		for(Person p : list) {
+			System.out.println(p.getName());
+		}
+		
+		
+		
+		// 3. 삼성동에 사는 사람들만 출력
+		System.out.println("\n3. 삼성동에 사는 사람들 : ");
+		
+		/* for문 풀이
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getAddr() == "삼성동") { // == "삼성동" 대신 .equals("삼성동") 사용 가능
+				System.out.println(list.get(i));	
+			}
+		} 
+		*/
+		
+		// 향상된 for문 풀이
+		for(Person p : list) {
+			if(p.getAddr().equals("삼성동")) {
+				System.out.println(p);
+			}
+		}
+		
+		
+		
+		// 4. 나이 순서대로 출력
+//		System.out.println("\n4-1. 나이 순서대로 출력 : ");
+//			// Collections.sort(list);  >> Person 클래스에 comepareTo 추상메서드 추가없이 작성 시 에러 발생 
+//			// ->> 오류가 발생하는 이유 : 소괄호 안 데이터타입(Person) 클래스에 compareTo라는 추상메서드가 implements 되어있어야 함(Person 클래스 참고)
+//		Collections.sort(list);
+//		System.out.println(list);
+		
+		System.out.println("\n4-2. 이름 순서대로 출력 : ");
+		Collections.sort(list);
+		System.out.println(list);
+		
+		System.out.println("\n-----------------------------\n");
+		
+		
+		// 10. clear : 싹 비우기
+		list.clear();
+		System.out.println(list);
 	}
 	
+	
+	public void method3() {
+		List<String> list = new ArrayList<>(); // String 선택 후 F3 : 선택한 클래스가 어떻게 짜여져 있는지 확인 가능
+		list.add("banana");
+		list.add("apple");
+		list.add("orange");
+		list.add("mango");
+		list.add("grape");
+		
+		// 11. 오름차순 정렬 : Comparable 인터페이스를 구현하고 있는 요소를 가지고 비교한 값들 반환하여 정렬
+		Collections.sort(list);
+		System.out.println("오름차순 정렬 : " + list);
+		
+		
+		// 12. 내림차순 정렬 : sort 메서드를 통해서 오름차순 정렬 후 reverse 메서드를 호출하여 재정렬
+		Collections.reverse(list); // 11번에서 오름차순 정렬을 한 정렬을 reverse
+		System.out.println("(11번에서 오름차순 정렬 후)내림차순으로 재정렬 : " + list);
+		
+		
+	}
 	
 	
 	
