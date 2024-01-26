@@ -19,7 +19,7 @@ public class B_Other {
 	 * - 동기화를 제공. 동기화된(synchronized) 메서드로 구성 (개념을 스레드를 알아야 함. 스레드는 뒤에서 강의 예정)
 	 * */
 	public void method1() {
-		Vector v = new Vector(); // 입력 후 임포트
+		Vector<Integer> v = new Vector<>(); // 입력 후 임포트
 		v.add(0);
 		v.add(1);
 		System.out.println(v); // [0, 1]
@@ -35,7 +35,7 @@ public class B_Other {
 	// 참고 : https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Stack.html
 	public void method2() {
 		
-		Stack s = new Stack();
+		Stack<Integer> s = new Stack<>();
 		s.push(0); // push : 생성한 Stack에 저장하는 역할(넣는 역할)
 		s.push(1);
 		s.push(2);
@@ -57,7 +57,7 @@ public class B_Other {
 		
 		// Queue는 클래스가 아닌 인터페이스(인터페이스는 객체 생성 안됨). 데이터 타입으로는 사용 가능 -> Queue처럼 사용 가능한 LinkedList 메서드로 사용
 		
-		Queue q = new LinkedList();
+		Queue<Integer> q = new LinkedList<>();
 		q.offer(0); // offer : 생성한 Queue에 저장하는 역할(넣는 역할)
 		q.offer(1);
 		q.offer(2);
