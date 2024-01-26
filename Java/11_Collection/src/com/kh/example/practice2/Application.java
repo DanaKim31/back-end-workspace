@@ -1,6 +1,7 @@
 package com.kh.example.practice2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import com.kh.example.practice2.model.Song;
@@ -35,6 +36,7 @@ public class Application {
 		
 		try {
 		int menuNum = sc.nextInt(); // try-catch에서 잡아야 하기 때문에 try 안으로 이동
+		sc.nextLine();
 			switch(menuNum) {
 			case 1: songAddLast();
 				break;
@@ -48,9 +50,9 @@ public class Application {
 				break;
 			case 6: songUpdate();
 				break;
-			case 7:
+			case 7: sortTitle();
 				break;
-			case 8:
+			case 8: sortSinger();
 				break;
 			case 9: System.out.println("종료");
 				check = false;
@@ -68,7 +70,7 @@ public class Application {
 		System.out.println("\n****** 마지막 위치에 곡 추가 ******");
 		System.out.print("곡 명 : ");
 		String title = sc.nextLine();
-		sc.nextLine();
+
 		System.out.print("가수 명 : ");
 		String singer = sc.nextLine();
 		
@@ -90,7 +92,7 @@ public class Application {
 		System.out.println("\n****** 첫 위치에 곡 추가 ******");
 		System.out.print("곡 명 : ");
 		String title = sc.nextLine();
-		sc.nextLine();
+	
 		System.out.print("가수 명 : ");
 		String singer = sc.nextLine();
 		
@@ -101,7 +103,8 @@ public class Application {
 	
 	
 	public void printAll() {
-		System.out.println(songList);
+		System.out.println("\n****** 전체 곡 목록 출력 ******");
+		System.out.println(songList + "\n");
 	}
 	
 	
@@ -136,10 +139,10 @@ public class Application {
 		System.out.println("\n****** 특정 곡 수정 ******");
 		System.out.println("검색할 곡 명 : ");
 		String searchTitle = sc.nextLine();
-		sc.nextLine();
+		
 		System.out.println("수정할 곡 명 : ");
 		String updateTitle = sc.nextLine();
-		sc.nextLine();
+		
 		System.out.println("수정할 가수 명 : ");
 		String updateSinger = sc.nextLine();
 		
@@ -149,6 +152,20 @@ public class Application {
 		} else {
 			System.out.println("수정할 곡이 없습니다.");
 		}
+	}
+	
+	
+	public void sortTitle() {
+		System.out.println("\n****** 곡 명 오름차순 정렬 ******");
+		// Collections.sort(songList);
+		System.out.println(songList);
+	}
+	
+	
+	public void sortSinger() {
+		System.out.println("\n****** 가수 명 내림차순 정렬 ******");
+		// Collections.sort(songList);
+		System.out.println(songList);
 	}
 
 }
