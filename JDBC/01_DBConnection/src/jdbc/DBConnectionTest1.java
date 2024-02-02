@@ -14,7 +14,7 @@ public class DBConnectionTest1 {
 		// JDBC (Java Database Connectivity) 작업 4단계 (!! 시험 !!)
 		
 		try {
-			// 1. 드라이버 로딩
+			// 1. 드라이버 로딩 => MySQL 연결
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("1. 드라이버 로딩...!!");
 			
@@ -28,7 +28,7 @@ public class DBConnectionTest1 {
 			PreparedStatement ps = conn.prepareStatement(query);
 			
 			// 4. 쿼리문 실행
-			ResultSet rs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery(); // SELECT만 excuteQuery with ResultSet(리턴타입)
 			
 			while(rs.next()) {
 				String empId = rs.getString("emp_id");
