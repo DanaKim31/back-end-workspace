@@ -1,8 +1,10 @@
 package com.kh;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.kh.controller.MemberController;
+import com.kh.model.Member;
 
 public class Application {
 
@@ -11,10 +13,14 @@ public class Application {
 
 	public static void main(String[] args) {
 		Application app = new Application();
-		app.mainMenu();
+		try {
+			app.mainMenu();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void mainMenu() {
+	public void mainMenu() throws SQLException {
 
 		System.out.println("===== KH 사이트 =====");
 
@@ -41,58 +47,53 @@ public class Application {
 		}
 	}
 
-	public void signUp() {
+	public void signUp() throws SQLException {
 		// 아이디, 비밀번호, 이름을 사용자한테 입력받아 MemberController의 signUp 메서드 반환 결과에 따라
 		// true면 "성공적으로 회원가입 완료하였습니다." 출력 / false면 "중복된 아이디입니다. 다시 입력해 주세요." 출력
 		// boolean
-		System.out.println("아이디 입력 : ");
+		System.out.print("아이디 입력 : ");
 		String id = sc.nextLine();
 
-		System.out.println("비밀번호 입력 : ");
+		System.out.print("비밀번호 입력 : ");
 		String password = sc.nextLine();
 
-		System.out.println("이름 입력 : ");
+		System.out.print("이름 입력 : ");
 		String name = sc.nextLine();
 		
-		/*
-		 * member 테이블에 없는 아이디 입력 시 성공(true), 중복일 경우 실패(false) 
-		 * */
+		Member m = new Member(id, password, name);
 		
-//		if(result == true) {
-//			System.out.println("성공적으로 회원가입 완료하였습니다.");
-//		} else {
-//			System.out.println("중복된 아이디입니다. 다시 입력해 주세요.");
-//			signUp();
-//		}
+		if(mc.signUp(m)) {
+			System.out.println("성공적으로 회원가입 완료하였습니다.");
+		} else {
+			System.out.println("중복된 아이디입니다. 다시 입력해 주세요.");
+			signUp();
+		}
 
 	}
 
-	public void login() {
+	public void login() throws SQLException {
 		// 아이디, 비밀번호를 사용자한테 입력받아 MemberController의 login 메서드 반환 결과를 이름으로 받고
 		// 이름이 null이 아니면 "~~님, 환영합니다!" 출력 / null이면 "틀린 아이디 또는 비밀번호 입니다. 다시 입력해 주세요." 출력
 		// null이 아니면(로그인 성공 했다면) memberMenu() 호출
-		System.out.println("아이디 입력 : ");
+		System.out.print("아이디 입력 : ");
 		String id = sc.nextLine();
 
-		System.out.println("비밀번호 입력 : ");
+		System.out.print("비밀번호 입력 : ");
 		String password = sc.nextLine();
 		
-		/*
-		 * 입력받은 아이디/비밀번호가 member 테이블에 존재하는 아이디/비밀번호 + 입력받은 아이디의 이름 컬럼이 null이 아니면 성공
-		 * */
-		
-//		if(name != null) {
-//			System.out.println(name + "님, 환영합니다!");
-//			memberMenu();
-//		} else {
-//			System.out.println("틀린 아이디 또는 비밀번호 입니다. 다시 입력해 주세요.");
-//			login();
-//		}
+		String name = mc.login(id, password); // MemberController의 login 메서드 반환 결과를 name으로 받고
+		if(name != null) {
+			System.out.println(name + "님, 환영합니다!");
+			memberMenu();
+		} else {
+			System.out.println("틀린 아이디 또는 비밀번호 입니다. 다시 입력해 주세요.");
+			login();
+		}
 
 
 	}
 
-	public void memberMenu() {
+	public void memberMenu() throws SQLException {
 		boolean check = true;
 		while (check) {
 			System.out.println("****** 회원 메뉴 ******");
@@ -116,27 +117,27 @@ public class Application {
 		}
 	}
 
-	public void changePassword() {
+	public void changePassword() throws SQLException {
 		// 아이디, 현재 비밀번호, 새로운 비밀번호를 입력받아 MemberController의 changePassword 메서드 반환 결과에 따라
 		// true면 "비밀번호 변경에 성공했습니다.", false면 "비밀번호 변경에 실패했습니다." 출력
-		System.out.println("아이디 입력 : ");
+		System.out.print("아이디 입력 : ");
 		String id = sc.nextLine();
 
-		System.out.println("현재 비밀번호 입력 : ");
+		System.out.print("현재 비밀번호 입력 : ");
 		String password = sc.nextLine();
 		
-		/*
-		 * 입력받은 아이디와 비밀번호가 member 테이블에 있을 경우 true, 없을 경우 false
-		 * */
+		System.out.print("새로운 비밀번호 입력 : ");
+		String newPassword = sc.nextLine();
 		
-//		if(res) {
-//			System.out.println("새로운 비밀번호 입력 : ");
-//			String newPassword = sc.nextLine();
-//		}
+		if(mc.changePassword(id, password, newPassword)) {
+			System.out.println("비밀번호 변경에 성공했습니다.");
+		} else {
+			System.out.println("비밀번호 변경에 실패했습니다. 다시 입력해 주세요.");
+		}
 
 	}
 
-	public void changeName() {
+	public void changeName() throws SQLException {
 		// 아이디, 비밀번호를 입력받아 사용자가 맞는지 확인 후(MemberController의 login 메서드 활용), 
 		// 이름이 null이 아니면 :  
 		//		1. "현재 설정된 이름 : ooo" 출력 후 
@@ -144,14 +145,27 @@ public class Application {
 		//		3. MemberController의 changeName 메서드로 이름 변경
 		//		4. "이름 변경에 성공하였습니다." 출력
 		// 이름이 null이면 : "이름 변경에 실패했습니다." 출력
-		System.out.println("아이디 입력 : ");
+		System.out.print("아이디 입력 : ");
 		String id = sc.nextLine();
 
-		System.out.println("비밀번호 입력 : ");
+		System.out.print("비밀번호 입력 : ");
 		String password = sc.nextLine();
-
-		System.out.println("변경할 이름 입력 : ");
-		String newName = sc.nextLine();
+		
+		// MemberController의 login 메서드 활용
+		String name = mc.login(id, password);
+		if(name != null) { // 이름이 null이 아니면,
+			System.out.println("현재 설정된 이름 : " + name);
+			
+			System.out.print("변경할 이름 입력 : ");
+			String newName = sc.nextLine();
+			
+			// MemberController의 changeName 메서드로 이름 변경
+			mc.changeName(id, newName);
+			
+			System.out.println("이름 변경에 성공했습니다.");
+		} else {
+			System.out.println("이름 변경에 실패했습니다. 다시 입력해 주세요");
+		}
 
 	}
 
