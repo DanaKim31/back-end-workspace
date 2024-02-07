@@ -51,8 +51,10 @@ public class MemberDAO {
 		ps.setString(1, id);
 		ps.setString(2, password);
 		ps.setString(3, name);
+		
 		int result = ps.executeUpdate();
 		close(ps, conn);
+		
 		return result;
 	}
 
@@ -87,8 +89,10 @@ public class MemberDAO {
 		String query = "UPDATE tb_member SET status='Y' WHERE member_no=?";
 		PreparedStatement ps = conn.prepareStatement(query);
 		ps.setInt(1, no);
+		
 		int result = ps.executeUpdate();
 		close(ps, conn);
+		
 		return result;
 	}
 
