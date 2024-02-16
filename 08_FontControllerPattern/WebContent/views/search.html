@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>회원검색</h1>
+	<!-- 1. action 변경 : FindMemberServlet에서 front.do로 변경 -->
+	<form action="/front.do">
+		<!-- 2. type=hidden, name=command, value=search로 input 추가 -->	
+		<input type="hidden" name="command" value="search">
+		검색할 회원 아이디 : <input type="text" name="id"><br>
+		<input type="submit" value="조회">
+	</form>
+</body>
+</html>
