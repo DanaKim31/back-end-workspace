@@ -1,8 +1,10 @@
 package com.kh.test6.model;
 
-public class Food {
-	private String name;
-	private int kcal;
+import com.kh.test6.Application;
+
+public class Food extends Application {
+	public String name;
+	public int kcal;
 	
 	
 	public Food() {
@@ -10,6 +12,7 @@ public class Food {
 
 
 	public Food(String name, int kcal) {
+		super();
 		this.name = name;
 		this.kcal = kcal;
 	}
@@ -40,4 +43,16 @@ public class Food {
 		return "Food [name=" + name + ", kcal=" + kcal + "]";
 	}
 	
+	
+	public static void addFood() {
+		
+	}
+	
+	public static void showAllFood() {
+		
+	}
+
+	public static void deleteFood() {
+		
+	}
 }
