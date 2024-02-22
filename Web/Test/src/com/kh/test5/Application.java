@@ -15,7 +15,7 @@ public class Application {
 		list.add(new Fruit("포도", "보라"));
 
 		for(int i=0; i<list.size(); i++) {
-			System.out.println(list[i].getName());
+//			System.out.println(list[i].getName());
 		}
 		
 	}
